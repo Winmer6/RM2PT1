@@ -1,0 +1,2 @@
+UseCaseModel ATM {Service ATMSystem {} Service ThirdPartyServices {}}
+DomainModel ATM {}
