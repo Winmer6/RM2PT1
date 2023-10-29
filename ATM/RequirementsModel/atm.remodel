@@ -1,0 +1,877 @@
+UseCaseModel ATM {
+
+	UC::withdrawCash() include cardIdentification definedBySSD(WithdrawCashSSD)
+	UC::depositFunds include cardIdentification definedBySSD(DepositFundsSSD)
+	UC::changePassword definedBySSD(ChangePasswordSSD)
+	UC::checkBalance definedBySSD(CheckBalanceSSD)
+	UC::cardIdentification
+	UC::manageUser definedBySSD(ManageUserSSD)
+	UC::manageBankCard definedBySSD(ManageBankCardSSD)
+	UC::transferMoney definedBySSD(TransferMoneySSD)
+	UC::checkBankStatement definedBySSD(CheckBankStatementSSD)
+	UC::closeAccount definedBySSD(CloseAccountSSD)
+	UC::checkCash definedBySSD(CheckCashSSD)
+	UC::checkLog definedBySSD(CheckLogSSD)
+
+	Actor Customer {
+		withdrawCash
+		depositFunds
+		changePassword
+		checkBalance
+		transferMoney
+		checkBankStatement
+		closeAccount
+	}
+
+	Actor BankClerk {
+		manageUser
+		manageBankCard
+		checkCash
+		checkLog
+	}
+
+	Interaction WithdrawCashSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::WithdrawCashSSDCallMessage1(inputCard WithdrawCashSSDCallMessage1SendingEnd -> WithdrawCashSSDExecution1StartEnd)
+		ReturnMessage::WithdrawCashSSDCallMessage1Return(WithdrawCashSSDExecution1FinishEnd -> WithdrawCashSSDCallMessage1ReturnReceivingEnd WithdrawCashSSDCallMessage1)
+		CallMessage::WithdrawCashSSDCallMessage3(inputPassword WithdrawCashSSDCallMessage3SendingEnd -> WithdrawCashSSDExecution2StartEnd)
+		ReturnMessage::WithdrawCashSSDCallMessage3Return(WithdrawCashSSDExecution2FinishEnd -> WithdrawCashSSDCallMessage3ReturnReceivingEnd WithdrawCashSSDCallMessage3)
+		CallMessage::WithdrawCashSSDCallMessage5(withdrawCash WithdrawCashSSDCallMessage5SendingEnd -> WithdrawCashSSDExecution3StartEnd)
+		ReturnMessage::WithdrawCashSSDCallMessage5Return(WithdrawCashSSDExecution3FinishEnd -> WithdrawCashSSDCallMessage5ReturnReceivingEnd WithdrawCashSSDCallMessage5)
+		CallMessage::WithdrawCashSSDCallMessage7(printReceipt WithdrawCashSSDCallMessage7SendingEnd -> WithdrawCashSSDExecution4StartEnd)
+		ReturnMessage::WithdrawCashSSDCallMessage7Return(WithdrawCashSSDExecution4FinishEnd -> WithdrawCashSSDCallMessage7ReturnReceivingEnd WithdrawCashSSDCallMessage7)
+		CallMessage::WithdrawCashSSDCallMessage9(ejectCard WithdrawCashSSDCallMessage9SendingEnd -> WithdrawCashSSDExecution5StartEnd)
+		ReturnMessage::WithdrawCashSSDCallMessage9Return(WithdrawCashSSDExecution5FinishEnd -> WithdrawCashSSDCallMessage9ReturnReceivingEnd WithdrawCashSSDCallMessage9)
+
+		Execution::WithdrawCashSSDExecution1(ATMSystem WithdrawCashSSDExecution1StartEnd WithdrawCashSSDExecution1FinishEnd)
+		Execution::WithdrawCashSSDExecution2(ATMSystem WithdrawCashSSDExecution2StartEnd WithdrawCashSSDExecution2FinishEnd)
+		Execution::WithdrawCashSSDExecution3(ATMSystem WithdrawCashSSDExecution3StartEnd WithdrawCashSSDExecution3FinishEnd)
+		Execution::WithdrawCashSSDExecution4(ATMSystem WithdrawCashSSDExecution4StartEnd WithdrawCashSSDExecution4FinishEnd)
+		Execution::WithdrawCashSSDExecution5(ATMSystem WithdrawCashSSDExecution5StartEnd WithdrawCashSSDExecution5FinishEnd)
+
+		MessageEnd::WithdrawCashSSDCallMessage1SendingEnd(Customer WithdrawCashSSDCallMessage1)
+		ExecutionEnd::WithdrawCashSSDExecution1StartEnd(ATMSystem WithdrawCashSSDExecution1)
+		ExecutionEnd::WithdrawCashSSDExecution1FinishEnd(ATMSystem WithdrawCashSSDExecution1)
+		MessageEnd::WithdrawCashSSDCallMessage1ReturnReceivingEnd(Customer WithdrawCashSSDCallMessage1Return)
+		MessageEnd::WithdrawCashSSDCallMessage3SendingEnd(Customer WithdrawCashSSDCallMessage3)
+		ExecutionEnd::WithdrawCashSSDExecution2StartEnd(ATMSystem WithdrawCashSSDExecution2)
+		ExecutionEnd::WithdrawCashSSDExecution2FinishEnd(ATMSystem WithdrawCashSSDExecution2)
+		MessageEnd::WithdrawCashSSDCallMessage3ReturnReceivingEnd(Customer WithdrawCashSSDCallMessage3Return)
+		MessageEnd::WithdrawCashSSDCallMessage5SendingEnd(Customer WithdrawCashSSDCallMessage5)
+		ExecutionEnd::WithdrawCashSSDExecution3StartEnd(ATMSystem WithdrawCashSSDExecution3)
+		ExecutionEnd::WithdrawCashSSDExecution3FinishEnd(ATMSystem WithdrawCashSSDExecution3)
+		MessageEnd::WithdrawCashSSDCallMessage5ReturnReceivingEnd(Customer WithdrawCashSSDCallMessage5Return)
+		MessageEnd::WithdrawCashSSDCallMessage7SendingEnd(Customer WithdrawCashSSDCallMessage7)
+		ExecutionEnd::WithdrawCashSSDExecution4StartEnd(ATMSystem WithdrawCashSSDExecution4)
+		ExecutionEnd::WithdrawCashSSDExecution4FinishEnd(ATMSystem WithdrawCashSSDExecution4)
+		MessageEnd::WithdrawCashSSDCallMessage7ReturnReceivingEnd(Customer WithdrawCashSSDCallMessage7Return)
+		MessageEnd::WithdrawCashSSDCallMessage9SendingEnd(Customer WithdrawCashSSDCallMessage9)
+		ExecutionEnd::WithdrawCashSSDExecution5StartEnd(ATMSystem WithdrawCashSSDExecution5)
+		ExecutionEnd::WithdrawCashSSDExecution5FinishEnd(ATMSystem WithdrawCashSSDExecution5)
+		MessageEnd::WithdrawCashSSDCallMessage9ReturnReceivingEnd(Customer WithdrawCashSSDCallMessage9Return)
+
+	}
+
+	Interaction DepositFundsSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::DepositFundsSSDCallMessage1(inputCard DepositFundsSSDCallMessage1SendingEnd -> DepositFundsSSDExecution1StartEnd)
+		ReturnMessage::DepositFundsSSDCallMessage1Return(DepositFundsSSDExecution1FinishEnd -> DepositFundsSSDCallMessage1ReturnReceivingEnd DepositFundsSSDCallMessage1)
+		CallMessage::DepositFundsSSDCallMessage3(inputPassword DepositFundsSSDCallMessage3SendingEnd -> DepositFundsSSDExecution2StartEnd)
+		ReturnMessage::DepositFundsSSDCallMessage3Return(DepositFundsSSDExecution2FinishEnd -> DepositFundsSSDCallMessage3ReturnReceivingEnd DepositFundsSSDCallMessage3)
+		CallMessage::DepositFundsSSDCallMessage5(depositFunds DepositFundsSSDCallMessage5SendingEnd -> DepositFundsSSDExecution3StartEnd)
+		ReturnMessage::DepositFundsSSDCallMessage5Return(DepositFundsSSDExecution3FinishEnd -> DepositFundsSSDCallMessage5ReturnReceivingEnd DepositFundsSSDCallMessage5)
+		CallMessage::DepositFundsSSDCallMessage7(printReceipt DepositFundsSSDCallMessage7SendingEnd -> DepositFundsSSDExecution4StartEnd)
+		ReturnMessage::DepositFundsSSDCallMessage7Return(DepositFundsSSDExecution4FinishEnd -> DepositFundsSSDCallMessage7ReturnReceivingEnd DepositFundsSSDCallMessage7)
+		CallMessage::DepositFundsSSDCallMessage9(ejectCard DepositFundsSSDCallMessage9SendingEnd -> DepositFundsSSDExecution5StartEnd)
+		ReturnMessage::DepositFundsSSDCallMessage9Return(DepositFundsSSDExecution5FinishEnd -> DepositFundsSSDCallMessage9ReturnReceivingEnd DepositFundsSSDCallMessage9)
+
+		Execution::DepositFundsSSDExecution1(ATMSystem DepositFundsSSDExecution1StartEnd DepositFundsSSDExecution1FinishEnd)
+		Execution::DepositFundsSSDExecution2(ATMSystem DepositFundsSSDExecution2StartEnd DepositFundsSSDExecution2FinishEnd)
+		Execution::DepositFundsSSDExecution3(ATMSystem DepositFundsSSDExecution3StartEnd DepositFundsSSDExecution3FinishEnd)
+		Execution::DepositFundsSSDExecution4(ATMSystem DepositFundsSSDExecution4StartEnd DepositFundsSSDExecution4FinishEnd)
+		Execution::DepositFundsSSDExecution5(ATMSystem DepositFundsSSDExecution5StartEnd DepositFundsSSDExecution5FinishEnd)
+
+		MessageEnd::DepositFundsSSDCallMessage1SendingEnd(Customer DepositFundsSSDCallMessage1)
+		ExecutionEnd::DepositFundsSSDExecution1StartEnd(ATMSystem DepositFundsSSDExecution1)
+		ExecutionEnd::DepositFundsSSDExecution1FinishEnd(ATMSystem DepositFundsSSDExecution1)
+		MessageEnd::DepositFundsSSDCallMessage1ReturnReceivingEnd(Customer DepositFundsSSDCallMessage1Return)
+		MessageEnd::DepositFundsSSDCallMessage3SendingEnd(Customer DepositFundsSSDCallMessage3)
+		ExecutionEnd::DepositFundsSSDExecution2StartEnd(ATMSystem DepositFundsSSDExecution2)
+		ExecutionEnd::DepositFundsSSDExecution2FinishEnd(ATMSystem DepositFundsSSDExecution2)
+		MessageEnd::DepositFundsSSDCallMessage3ReturnReceivingEnd(Customer DepositFundsSSDCallMessage3Return)
+		MessageEnd::DepositFundsSSDCallMessage5SendingEnd(Customer DepositFundsSSDCallMessage5)
+		ExecutionEnd::DepositFundsSSDExecution3StartEnd(ATMSystem DepositFundsSSDExecution3)
+		ExecutionEnd::DepositFundsSSDExecution3FinishEnd(ATMSystem DepositFundsSSDExecution3)
+		MessageEnd::DepositFundsSSDCallMessage5ReturnReceivingEnd(Customer DepositFundsSSDCallMessage5Return)
+		MessageEnd::DepositFundsSSDCallMessage7SendingEnd(Customer DepositFundsSSDCallMessage7)
+		ExecutionEnd::DepositFundsSSDExecution4StartEnd(ATMSystem DepositFundsSSDExecution4)
+		ExecutionEnd::DepositFundsSSDExecution4FinishEnd(ATMSystem DepositFundsSSDExecution4)
+		MessageEnd::DepositFundsSSDCallMessage7ReturnReceivingEnd(Customer DepositFundsSSDCallMessage7Return)
+		MessageEnd::DepositFundsSSDCallMessage9SendingEnd(Customer DepositFundsSSDCallMessage9)
+		ExecutionEnd::DepositFundsSSDExecution5StartEnd(ATMSystem DepositFundsSSDExecution5)
+		ExecutionEnd::DepositFundsSSDExecution5FinishEnd(ATMSystem DepositFundsSSDExecution5)
+		MessageEnd::DepositFundsSSDCallMessage9ReturnReceivingEnd(Customer DepositFundsSSDCallMessage9Return)
+
+	}
+
+	Interaction ChangePasswordSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::ChangePasswordSSDCallMessage1(inputCard ChangePasswordSSDCallMessage1SendingEnd -> ChangePasswordSSDExecution1StartEnd)
+		ReturnMessage::ChangePasswordSSDCallMessage1Return(ChangePasswordSSDExecution1FinishEnd -> ChangePasswordSSDCallMessage1ReturnReceivingEnd ChangePasswordSSDCallMessage1)
+		CallMessage::ChangePasswordSSDCallMessage3(inputPassword ChangePasswordSSDCallMessage3SendingEnd -> ChangePasswordSSDExecution2StartEnd)
+		ReturnMessage::ChangePasswordSSDCallMessage3Return(ChangePasswordSSDExecution2FinishEnd -> ChangePasswordSSDCallMessage3ReturnReceivingEnd ChangePasswordSSDCallMessage3)
+		CallMessage::ChangePasswordSSDCallMessage5(changePassword ChangePasswordSSDCallMessage5SendingEnd -> ChangePasswordSSDExecution3StartEnd)
+		ReturnMessage::ChangePasswordSSDCallMessage5Return(ChangePasswordSSDExecution3FinishEnd -> ChangePasswordSSDCallMessage5ReturnReceivingEnd ChangePasswordSSDCallMessage5)
+		CallMessage::ChangePasswordSSDCallMessage7(inputPassword ChangePasswordSSDCallMessage7SendingEnd -> ChangePasswordSSDExecution4StartEnd)
+		ReturnMessage::ChangePasswordSSDCallMessage7Return(ChangePasswordSSDExecution4FinishEnd -> ChangePasswordSSDCallMessage7ReturnReceivingEnd ChangePasswordSSDCallMessage7)
+		CallMessage::ChangePasswordSSDCallMessage9(ejectCard ChangePasswordSSDCallMessage9SendingEnd -> ChangePasswordSSDExecution5StartEnd)
+		ReturnMessage::ChangePasswordSSDCallMessage9Return(ChangePasswordSSDExecution5FinishEnd -> ChangePasswordSSDCallMessage9ReturnReceivingEnd ChangePasswordSSDCallMessage9)
+
+		Execution::ChangePasswordSSDExecution1(ATMSystem ChangePasswordSSDExecution1StartEnd ChangePasswordSSDExecution1FinishEnd)
+		Execution::ChangePasswordSSDExecution2(ATMSystem ChangePasswordSSDExecution2StartEnd ChangePasswordSSDExecution2FinishEnd)
+		Execution::ChangePasswordSSDExecution3(ATMSystem ChangePasswordSSDExecution3StartEnd ChangePasswordSSDExecution3FinishEnd)
+		Execution::ChangePasswordSSDExecution4(ATMSystem ChangePasswordSSDExecution4StartEnd ChangePasswordSSDExecution4FinishEnd)
+		Execution::ChangePasswordSSDExecution5(ATMSystem ChangePasswordSSDExecution5StartEnd ChangePasswordSSDExecution5FinishEnd)
+
+		MessageEnd::ChangePasswordSSDCallMessage1SendingEnd(Customer ChangePasswordSSDCallMessage1)
+		ExecutionEnd::ChangePasswordSSDExecution1StartEnd(ATMSystem ChangePasswordSSDExecution1)
+		ExecutionEnd::ChangePasswordSSDExecution1FinishEnd(ATMSystem ChangePasswordSSDExecution1)
+		MessageEnd::ChangePasswordSSDCallMessage1ReturnReceivingEnd(Customer ChangePasswordSSDCallMessage1Return)
+		MessageEnd::ChangePasswordSSDCallMessage3SendingEnd(Customer ChangePasswordSSDCallMessage3)
+		ExecutionEnd::ChangePasswordSSDExecution2StartEnd(ATMSystem ChangePasswordSSDExecution2)
+		ExecutionEnd::ChangePasswordSSDExecution2FinishEnd(ATMSystem ChangePasswordSSDExecution2)
+		MessageEnd::ChangePasswordSSDCallMessage3ReturnReceivingEnd(Customer ChangePasswordSSDCallMessage3Return)
+		MessageEnd::ChangePasswordSSDCallMessage5SendingEnd(Customer ChangePasswordSSDCallMessage5)
+		ExecutionEnd::ChangePasswordSSDExecution3StartEnd(ATMSystem ChangePasswordSSDExecution3)
+		ExecutionEnd::ChangePasswordSSDExecution3FinishEnd(ATMSystem ChangePasswordSSDExecution3)
+		MessageEnd::ChangePasswordSSDCallMessage5ReturnReceivingEnd(Customer ChangePasswordSSDCallMessage5Return)
+		MessageEnd::ChangePasswordSSDCallMessage7SendingEnd(Customer ChangePasswordSSDCallMessage7)
+		ExecutionEnd::ChangePasswordSSDExecution4StartEnd(ATMSystem ChangePasswordSSDExecution4)
+		ExecutionEnd::ChangePasswordSSDExecution4FinishEnd(ATMSystem ChangePasswordSSDExecution4)
+		MessageEnd::ChangePasswordSSDCallMessage7ReturnReceivingEnd(Customer ChangePasswordSSDCallMessage7Return)
+		MessageEnd::ChangePasswordSSDCallMessage9SendingEnd(Customer ChangePasswordSSDCallMessage9)
+		ExecutionEnd::ChangePasswordSSDExecution5StartEnd(ATMSystem ChangePasswordSSDExecution5)
+		ExecutionEnd::ChangePasswordSSDExecution5FinishEnd(ATMSystem ChangePasswordSSDExecution5)
+		MessageEnd::ChangePasswordSSDCallMessage9ReturnReceivingEnd(Customer ChangePasswordSSDCallMessage9Return)
+
+	}
+
+	Interaction CheckBalanceSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::CheckBalanceSSDCallMessage1(inputCard CheckBalanceSSDCallMessage1SendingEnd -> CheckBalanceSSDExecution1StartEnd)
+		ReturnMessage::CheckBalanceSSDCallMessage1Return(CheckBalanceSSDExecution1FinishEnd -> CheckBalanceSSDCallMessage1ReturnReceivingEnd CheckBalanceSSDCallMessage1)
+		CallMessage::CheckBalanceSSDCallMessage3(inputPassword CheckBalanceSSDCallMessage3SendingEnd -> CheckBalanceSSDExecution2StartEnd)
+		ReturnMessage::CheckBalanceSSDCallMessage3Return(CheckBalanceSSDExecution2FinishEnd -> CheckBalanceSSDCallMessage3ReturnReceivingEnd CheckBalanceSSDCallMessage3)
+		CallMessage::CheckBalanceSSDCallMessage5(checkBalance CheckBalanceSSDCallMessage5SendingEnd -> CheckBalanceSSDExecution3StartEnd)
+		ReturnMessage::CheckBalanceSSDCallMessage5Return(CheckBalanceSSDExecution3FinishEnd -> CheckBalanceSSDCallMessage5ReturnReceivingEnd CheckBalanceSSDCallMessage5)
+		CallMessage::CheckBalanceSSDCallMessage7(ejectCard CheckBalanceSSDCallMessage7SendingEnd -> CheckBalanceSSDExecution4StartEnd)
+		ReturnMessage::CheckBalanceSSDCallMessage7Return(CheckBalanceSSDExecution4FinishEnd -> CheckBalanceSSDCallMessage7ReturnReceivingEnd CheckBalanceSSDCallMessage7)
+
+		Execution::CheckBalanceSSDExecution1(ATMSystem CheckBalanceSSDExecution1StartEnd CheckBalanceSSDExecution1FinishEnd)
+		Execution::CheckBalanceSSDExecution2(ATMSystem CheckBalanceSSDExecution2StartEnd CheckBalanceSSDExecution2FinishEnd)
+		Execution::CheckBalanceSSDExecution3(ATMSystem CheckBalanceSSDExecution3StartEnd CheckBalanceSSDExecution3FinishEnd)
+		Execution::CheckBalanceSSDExecution4(ATMSystem CheckBalanceSSDExecution4StartEnd CheckBalanceSSDExecution4FinishEnd)
+
+		MessageEnd::CheckBalanceSSDCallMessage1SendingEnd(Customer CheckBalanceSSDCallMessage1)
+		ExecutionEnd::CheckBalanceSSDExecution1StartEnd(ATMSystem CheckBalanceSSDExecution1)
+		ExecutionEnd::CheckBalanceSSDExecution1FinishEnd(ATMSystem CheckBalanceSSDExecution1)
+		MessageEnd::CheckBalanceSSDCallMessage1ReturnReceivingEnd(Customer CheckBalanceSSDCallMessage1Return)
+		MessageEnd::CheckBalanceSSDCallMessage3SendingEnd(Customer CheckBalanceSSDCallMessage3)
+		ExecutionEnd::CheckBalanceSSDExecution2StartEnd(ATMSystem CheckBalanceSSDExecution2)
+		ExecutionEnd::CheckBalanceSSDExecution2FinishEnd(ATMSystem CheckBalanceSSDExecution2)
+		MessageEnd::CheckBalanceSSDCallMessage3ReturnReceivingEnd(Customer CheckBalanceSSDCallMessage3Return)
+		MessageEnd::CheckBalanceSSDCallMessage5SendingEnd(Customer CheckBalanceSSDCallMessage5)
+		ExecutionEnd::CheckBalanceSSDExecution3StartEnd(ATMSystem CheckBalanceSSDExecution3)
+		ExecutionEnd::CheckBalanceSSDExecution3FinishEnd(ATMSystem CheckBalanceSSDExecution3)
+		MessageEnd::CheckBalanceSSDCallMessage5ReturnReceivingEnd(Customer CheckBalanceSSDCallMessage5Return)
+		MessageEnd::CheckBalanceSSDCallMessage7SendingEnd(Customer CheckBalanceSSDCallMessage7)
+		ExecutionEnd::CheckBalanceSSDExecution4StartEnd(ATMSystem CheckBalanceSSDExecution4)
+		ExecutionEnd::CheckBalanceSSDExecution4FinishEnd(ATMSystem CheckBalanceSSDExecution4)
+		MessageEnd::CheckBalanceSSDCallMessage7ReturnReceivingEnd(Customer CheckBalanceSSDCallMessage7Return)
+
+	}
+
+	Interaction TransferMoneySSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::TransferMoneySSDCallMessage1(inputCard TransferMoneySSDCallMessage1SendingEnd -> TransferMoneySSDExecution1StartEnd)
+		ReturnMessage::TransferMoneySSDCallMessage1Return(TransferMoneySSDExecution1FinishEnd -> TransferMoneySSDCallMessage1ReturnReceivingEnd TransferMoneySSDCallMessage1)
+		CallMessage::TransferMoneySSDCallMessage3(inputPassword TransferMoneySSDCallMessage3SendingEnd -> TransferMoneySSDExecution2StartEnd)
+		ReturnMessage::TransferMoneySSDCallMessage3Return(TransferMoneySSDExecution2FinishEnd -> TransferMoneySSDCallMessage3ReturnReceivingEnd TransferMoneySSDCallMessage3)
+		CallMessage::TransferMoneySSDCallMessage5(transferMoney TransferMoneySSDCallMessage5SendingEnd -> TransferMoneySSDExecution3StartEnd)
+		ReturnMessage::TransferMoneySSDCallMessage5Return(TransferMoneySSDExecution3FinishEnd -> TransferMoneySSDCallMessage5ReturnReceivingEnd TransferMoneySSDCallMessage5)
+		CallMessage::TransferMoneySSDCallMessage7(printReceipt TransferMoneySSDCallMessage7SendingEnd -> TransferMoneySSDExecution4StartEnd)
+		ReturnMessage::TransferMoneySSDCallMessage7Return(TransferMoneySSDExecution4FinishEnd -> TransferMoneySSDCallMessage7ReturnReceivingEnd TransferMoneySSDCallMessage7)
+		CallMessage::TransferMoneySSDCallMessage9(ejectCard TransferMoneySSDCallMessage9SendingEnd -> TransferMoneySSDExecution5StartEnd)
+		ReturnMessage::TransferMoneySSDCallMessage9Return(TransferMoneySSDExecution5FinishEnd -> TransferMoneySSDCallMessage9ReturnReceivingEnd TransferMoneySSDCallMessage9)
+
+		Execution::TransferMoneySSDExecution1(ATMSystem TransferMoneySSDExecution1StartEnd TransferMoneySSDExecution1FinishEnd)
+		Execution::TransferMoneySSDExecution2(ATMSystem TransferMoneySSDExecution2StartEnd TransferMoneySSDExecution2FinishEnd)
+		Execution::TransferMoneySSDExecution3(ATMSystem TransferMoneySSDExecution3StartEnd TransferMoneySSDExecution3FinishEnd)
+		Execution::TransferMoneySSDExecution4(ATMSystem TransferMoneySSDExecution4StartEnd TransferMoneySSDExecution4FinishEnd)
+		Execution::TransferMoneySSDExecution5(ATMSystem TransferMoneySSDExecution5StartEnd TransferMoneySSDExecution5FinishEnd)
+
+		MessageEnd::TransferMoneySSDCallMessage1SendingEnd(Customer TransferMoneySSDCallMessage1)
+		ExecutionEnd::TransferMoneySSDExecution1StartEnd(ATMSystem TransferMoneySSDExecution1)
+		ExecutionEnd::TransferMoneySSDExecution1FinishEnd(ATMSystem TransferMoneySSDExecution1)
+		MessageEnd::TransferMoneySSDCallMessage1ReturnReceivingEnd(Customer TransferMoneySSDCallMessage1Return)
+		MessageEnd::TransferMoneySSDCallMessage3SendingEnd(Customer TransferMoneySSDCallMessage3)
+		ExecutionEnd::TransferMoneySSDExecution2StartEnd(ATMSystem TransferMoneySSDExecution2)
+		ExecutionEnd::TransferMoneySSDExecution2FinishEnd(ATMSystem TransferMoneySSDExecution2)
+		MessageEnd::TransferMoneySSDCallMessage3ReturnReceivingEnd(Customer TransferMoneySSDCallMessage3Return)
+		MessageEnd::TransferMoneySSDCallMessage5SendingEnd(Customer TransferMoneySSDCallMessage5)
+		ExecutionEnd::TransferMoneySSDExecution3StartEnd(ATMSystem TransferMoneySSDExecution3)
+		ExecutionEnd::TransferMoneySSDExecution3FinishEnd(ATMSystem TransferMoneySSDExecution3)
+		MessageEnd::TransferMoneySSDCallMessage5ReturnReceivingEnd(Customer TransferMoneySSDCallMessage5Return)
+		MessageEnd::TransferMoneySSDCallMessage7SendingEnd(Customer TransferMoneySSDCallMessage7)
+		ExecutionEnd::TransferMoneySSDExecution4StartEnd(ATMSystem TransferMoneySSDExecution4)
+		ExecutionEnd::TransferMoneySSDExecution4FinishEnd(ATMSystem TransferMoneySSDExecution4)
+		MessageEnd::TransferMoneySSDCallMessage7ReturnReceivingEnd(Customer TransferMoneySSDCallMessage7Return)
+		MessageEnd::TransferMoneySSDCallMessage9SendingEnd(Customer TransferMoneySSDCallMessage9)
+		ExecutionEnd::TransferMoneySSDExecution5StartEnd(ATMSystem TransferMoneySSDExecution5)
+		ExecutionEnd::TransferMoneySSDExecution5FinishEnd(ATMSystem TransferMoneySSDExecution5)
+		MessageEnd::TransferMoneySSDCallMessage9ReturnReceivingEnd(Customer TransferMoneySSDCallMessage9Return)
+
+	}
+
+	Interaction CheckBankStatementSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::CheckBankStatementSSDCallMessage1(inputCard CheckBankStatementSSDCallMessage1SendingEnd -> CheckBankStatementSSDExecution1StartEnd)
+		ReturnMessage::CheckBankStatementSSDCallMessage1Return(CheckBankStatementSSDExecution1FinishEnd -> CheckBankStatementSSDCallMessage1ReturnReceivingEnd CheckBankStatementSSDCallMessage1)
+		CallMessage::CheckBankStatementSSDCallMessage3(inputPassword CheckBankStatementSSDCallMessage3SendingEnd -> CheckBankStatementSSDExecution2StartEnd)
+		ReturnMessage::CheckBankStatementSSDCallMessage3Return(CheckBankStatementSSDExecution2FinishEnd -> CheckBankStatementSSDCallMessage3ReturnReceivingEnd CheckBankStatementSSDCallMessage3)
+		CallMessage::CheckBankStatementSSDCallMessage5(checkBankStatement CheckBankStatementSSDCallMessage5SendingEnd -> CheckBankStatementSSDExecution3StartEnd)
+		ReturnMessage::CheckBankStatementSSDCallMessage5Return(CheckBankStatementSSDExecution3FinishEnd -> CheckBankStatementSSDCallMessage5ReturnReceivingEnd CheckBankStatementSSDCallMessage5)
+		CallMessage::CheckBankStatementSSDCallMessage7(printReceipt CheckBankStatementSSDCallMessage7SendingEnd -> CheckBankStatementSSDExecution4StartEnd)
+		ReturnMessage::CheckBankStatementSSDCallMessage7Return(CheckBankStatementSSDExecution4FinishEnd -> CheckBankStatementSSDCallMessage7ReturnReceivingEnd CheckBankStatementSSDCallMessage7)
+		CallMessage::CheckBankStatementSSDCallMessage9(ejectCard CheckBankStatementSSDCallMessage9SendingEnd -> CheckBankStatementSSDExecution5StartEnd)
+		ReturnMessage::CheckBankStatementSSDCallMessage9Return(CheckBankStatementSSDExecution5FinishEnd -> CheckBankStatementSSDCallMessage9ReturnReceivingEnd CheckBankStatementSSDCallMessage9)
+
+		Execution::CheckBankStatementSSDExecution1(ATMSystem CheckBankStatementSSDExecution1StartEnd CheckBankStatementSSDExecution1FinishEnd)
+		Execution::CheckBankStatementSSDExecution2(ATMSystem CheckBankStatementSSDExecution2StartEnd CheckBankStatementSSDExecution2FinishEnd)
+		Execution::CheckBankStatementSSDExecution3(ATMSystem CheckBankStatementSSDExecution3StartEnd CheckBankStatementSSDExecution3FinishEnd)
+		Execution::CheckBankStatementSSDExecution4(ATMSystem CheckBankStatementSSDExecution4StartEnd CheckBankStatementSSDExecution4FinishEnd)
+		Execution::CheckBankStatementSSDExecution5(ATMSystem CheckBankStatementSSDExecution5StartEnd CheckBankStatementSSDExecution5FinishEnd)
+
+		MessageEnd::CheckBankStatementSSDCallMessage1SendingEnd(Customer CheckBankStatementSSDCallMessage1)
+		ExecutionEnd::CheckBankStatementSSDExecution1StartEnd(ATMSystem CheckBankStatementSSDExecution1)
+		ExecutionEnd::CheckBankStatementSSDExecution1FinishEnd(ATMSystem CheckBankStatementSSDExecution1)
+		MessageEnd::CheckBankStatementSSDCallMessage1ReturnReceivingEnd(Customer CheckBankStatementSSDCallMessage1Return)
+		MessageEnd::CheckBankStatementSSDCallMessage3SendingEnd(Customer CheckBankStatementSSDCallMessage3)
+		ExecutionEnd::CheckBankStatementSSDExecution2StartEnd(ATMSystem CheckBankStatementSSDExecution2)
+		ExecutionEnd::CheckBankStatementSSDExecution2FinishEnd(ATMSystem CheckBankStatementSSDExecution2)
+		MessageEnd::CheckBankStatementSSDCallMessage3ReturnReceivingEnd(Customer CheckBankStatementSSDCallMessage3Return)
+		MessageEnd::CheckBankStatementSSDCallMessage5SendingEnd(Customer CheckBankStatementSSDCallMessage5)
+		ExecutionEnd::CheckBankStatementSSDExecution3StartEnd(ATMSystem CheckBankStatementSSDExecution3)
+		ExecutionEnd::CheckBankStatementSSDExecution3FinishEnd(ATMSystem CheckBankStatementSSDExecution3)
+		MessageEnd::CheckBankStatementSSDCallMessage5ReturnReceivingEnd(Customer CheckBankStatementSSDCallMessage5Return)
+		MessageEnd::CheckBankStatementSSDCallMessage7SendingEnd(Customer CheckBankStatementSSDCallMessage7)
+		ExecutionEnd::CheckBankStatementSSDExecution4StartEnd(ATMSystem CheckBankStatementSSDExecution4)
+		ExecutionEnd::CheckBankStatementSSDExecution4FinishEnd(ATMSystem CheckBankStatementSSDExecution4)
+		MessageEnd::CheckBankStatementSSDCallMessage7ReturnReceivingEnd(Customer CheckBankStatementSSDCallMessage7Return)
+		MessageEnd::CheckBankStatementSSDCallMessage9SendingEnd(Customer CheckBankStatementSSDCallMessage9)
+		ExecutionEnd::CheckBankStatementSSDExecution5StartEnd(ATMSystem CheckBankStatementSSDExecution5)
+		ExecutionEnd::CheckBankStatementSSDExecution5FinishEnd(ATMSystem CheckBankStatementSSDExecution5)
+		MessageEnd::CheckBankStatementSSDCallMessage9ReturnReceivingEnd(Customer CheckBankStatementSSDCallMessage9Return)
+
+	}
+
+	Interaction CloseAccountSSD {
+
+		[Participants: Customer ATMSystem]
+
+		CallMessage::CloseAccountSSDCallMessage1(inputCard CloseAccountSSDCallMessage1SendingEnd -> CloseAccountSSDExecution1StartEnd)
+		ReturnMessage::CloseAccountSSDCallMessage1Return(CloseAccountSSDExecution1FinishEnd -> CloseAccountSSDCallMessage1ReturnReceivingEnd CloseAccountSSDCallMessage1)
+		CallMessage::CloseAccountSSDCallMessage3(inputPassword CloseAccountSSDCallMessage3SendingEnd -> CloseAccountSSDExecution2StartEnd)
+		ReturnMessage::CloseAccountSSDCallMessage3Return(CloseAccountSSDExecution2FinishEnd -> CloseAccountSSDCallMessage3ReturnReceivingEnd CloseAccountSSDCallMessage3)
+		CallMessage::CloseAccountSSDCallMessage5(closeAccount CloseAccountSSDCallMessage5SendingEnd -> CloseAccountSSDExecution3StartEnd)
+		ReturnMessage::CloseAccountSSDCallMessage5Return(CloseAccountSSDExecution3FinishEnd -> CloseAccountSSDCallMessage5ReturnReceivingEnd CloseAccountSSDCallMessage5)
+		CallMessage::CloseAccountSSDCallMessage7(ejectCard CloseAccountSSDCallMessage7SendingEnd -> CloseAccountSSDExecution4StartEnd)
+		ReturnMessage::CloseAccountSSDCallMessage7Return(CloseAccountSSDExecution4FinishEnd -> CloseAccountSSDCallMessage7ReturnReceivingEnd CloseAccountSSDCallMessage7)
+
+		Execution::CloseAccountSSDExecution1(ATMSystem CloseAccountSSDExecution1StartEnd CloseAccountSSDExecution1FinishEnd)
+		Execution::CloseAccountSSDExecution2(ATMSystem CloseAccountSSDExecution2StartEnd CloseAccountSSDExecution2FinishEnd)
+		Execution::CloseAccountSSDExecution3(ATMSystem CloseAccountSSDExecution3StartEnd CloseAccountSSDExecution3FinishEnd)
+		Execution::CloseAccountSSDExecution4(ATMSystem CloseAccountSSDExecution4StartEnd CloseAccountSSDExecution4FinishEnd)
+
+		MessageEnd::CloseAccountSSDCallMessage1SendingEnd(Customer CloseAccountSSDCallMessage1)
+		ExecutionEnd::CloseAccountSSDExecution1StartEnd(ATMSystem CloseAccountSSDExecution1)
+		ExecutionEnd::CloseAccountSSDExecution1FinishEnd(ATMSystem CloseAccountSSDExecution1)
+		MessageEnd::CloseAccountSSDCallMessage1ReturnReceivingEnd(Customer CloseAccountSSDCallMessage1Return)
+		MessageEnd::CloseAccountSSDCallMessage3SendingEnd(Customer CloseAccountSSDCallMessage3)
+		ExecutionEnd::CloseAccountSSDExecution2StartEnd(ATMSystem CloseAccountSSDExecution2)
+		ExecutionEnd::CloseAccountSSDExecution2FinishEnd(ATMSystem CloseAccountSSDExecution2)
+		MessageEnd::CloseAccountSSDCallMessage3ReturnReceivingEnd(Customer CloseAccountSSDCallMessage3Return)
+		MessageEnd::CloseAccountSSDCallMessage5SendingEnd(Customer CloseAccountSSDCallMessage5)
+		ExecutionEnd::CloseAccountSSDExecution3StartEnd(ATMSystem CloseAccountSSDExecution3)
+		ExecutionEnd::CloseAccountSSDExecution3FinishEnd(ATMSystem CloseAccountSSDExecution3)
+		MessageEnd::CloseAccountSSDCallMessage5ReturnReceivingEnd(Customer CloseAccountSSDCallMessage5Return)
+		MessageEnd::CloseAccountSSDCallMessage7SendingEnd(Customer CloseAccountSSDCallMessage7)
+		ExecutionEnd::CloseAccountSSDExecution4StartEnd(ATMSystem CloseAccountSSDExecution4)
+		ExecutionEnd::CloseAccountSSDExecution4FinishEnd(ATMSystem CloseAccountSSDExecution4)
+		MessageEnd::CloseAccountSSDCallMessage7ReturnReceivingEnd(Customer CloseAccountSSDCallMessage7Return)
+
+	}
+
+	Interaction ManageUserSSD {
+
+		[Participants: BankClerk ManageUserCRUDService]
+
+	}
+
+	Interaction ManageBankCardSSD {
+
+		[Participants: BankClerk ManageBankCardCRUDService]
+
+	}
+
+	Interaction CheckCashSSD {
+
+		[Participants: BankClerk ATMSystem]
+
+		CallMessage::CheckCashSSDCallMessage1(changeMode CheckCashSSDCallMessage1SendingEnd -> CheckCashSSDExecution1StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage1Return(CheckCashSSDExecution1FinishEnd -> CheckCashSSDCallMessage1ReturnReceivingEnd CheckCashSSDCallMessage1)
+		CallMessage::CheckCashSSDCallMessage3(clerkAuthorization CheckCashSSDCallMessage3SendingEnd -> CheckCashSSDExecution2StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage3Return(CheckCashSSDExecution2FinishEnd -> CheckCashSSDCallMessage3ReturnReceivingEnd CheckCashSSDCallMessage3)
+		CallMessage::CheckCashSSDCallMessage5(checkCash CheckCashSSDCallMessage5SendingEnd -> CheckCashSSDExecution3StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage5Return(CheckCashSSDExecution3FinishEnd -> CheckCashSSDCallMessage5ReturnReceivingEnd CheckCashSSDCallMessage5)
+		CallMessage::CheckCashSSDCallMessage7(printDetails CheckCashSSDCallMessage7SendingEnd -> CheckCashSSDExecution4StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage7Return(CheckCashSSDExecution4FinishEnd -> CheckCashSSDCallMessage7ReturnReceivingEnd CheckCashSSDCallMessage7)
+		CallMessage::CheckCashSSDCallMessage9(clerkExit CheckCashSSDCallMessage9SendingEnd -> CheckCashSSDExecution5StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage9Return(CheckCashSSDExecution5FinishEnd -> CheckCashSSDCallMessage9ReturnReceivingEnd CheckCashSSDCallMessage9)
+		CallMessage::CheckCashSSDCallMessage11(changeMode CheckCashSSDCallMessage11SendingEnd -> CheckCashSSDExecution6StartEnd)
+		ReturnMessage::CheckCashSSDCallMessage11Return(CheckCashSSDExecution6FinishEnd -> CheckCashSSDCallMessage11ReturnReceivingEnd CheckCashSSDCallMessage11)
+
+		Execution::CheckCashSSDExecution1(ATMSystem CheckCashSSDExecution1StartEnd CheckCashSSDExecution1FinishEnd)
+		Execution::CheckCashSSDExecution2(ATMSystem CheckCashSSDExecution2StartEnd CheckCashSSDExecution2FinishEnd)
+		Execution::CheckCashSSDExecution3(ATMSystem CheckCashSSDExecution3StartEnd CheckCashSSDExecution3FinishEnd)
+		Execution::CheckCashSSDExecution4(ATMSystem CheckCashSSDExecution4StartEnd CheckCashSSDExecution4FinishEnd)
+		Execution::CheckCashSSDExecution5(ATMSystem CheckCashSSDExecution5StartEnd CheckCashSSDExecution5FinishEnd)
+		Execution::CheckCashSSDExecution6(ATMSystem CheckCashSSDExecution6StartEnd CheckCashSSDExecution6FinishEnd)
+
+		MessageEnd::CheckCashSSDCallMessage1SendingEnd(BankClerk CheckCashSSDCallMessage1)
+		ExecutionEnd::CheckCashSSDExecution1StartEnd(ATMSystem CheckCashSSDExecution1)
+		ExecutionEnd::CheckCashSSDExecution1FinishEnd(ATMSystem CheckCashSSDExecution1)
+		MessageEnd::CheckCashSSDCallMessage1ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage1Return)
+		MessageEnd::CheckCashSSDCallMessage3SendingEnd(BankClerk CheckCashSSDCallMessage3)
+		ExecutionEnd::CheckCashSSDExecution2StartEnd(ATMSystem CheckCashSSDExecution2)
+		ExecutionEnd::CheckCashSSDExecution2FinishEnd(ATMSystem CheckCashSSDExecution2)
+		MessageEnd::CheckCashSSDCallMessage3ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage3Return)
+		MessageEnd::CheckCashSSDCallMessage5SendingEnd(BankClerk CheckCashSSDCallMessage5)
+		ExecutionEnd::CheckCashSSDExecution3StartEnd(ATMSystem CheckCashSSDExecution3)
+		ExecutionEnd::CheckCashSSDExecution3FinishEnd(ATMSystem CheckCashSSDExecution3)
+		MessageEnd::CheckCashSSDCallMessage5ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage5Return)
+		MessageEnd::CheckCashSSDCallMessage7SendingEnd(BankClerk CheckCashSSDCallMessage7)
+		ExecutionEnd::CheckCashSSDExecution4StartEnd(ATMSystem CheckCashSSDExecution4)
+		ExecutionEnd::CheckCashSSDExecution4FinishEnd(ATMSystem CheckCashSSDExecution4)
+		MessageEnd::CheckCashSSDCallMessage7ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage7Return)
+		MessageEnd::CheckCashSSDCallMessage9SendingEnd(BankClerk CheckCashSSDCallMessage9)
+		ExecutionEnd::CheckCashSSDExecution5StartEnd(ATMSystem CheckCashSSDExecution5)
+		ExecutionEnd::CheckCashSSDExecution5FinishEnd(ATMSystem CheckCashSSDExecution5)
+		MessageEnd::CheckCashSSDCallMessage9ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage9Return)
+		MessageEnd::CheckCashSSDCallMessage11SendingEnd(BankClerk CheckCashSSDCallMessage11)
+		ExecutionEnd::CheckCashSSDExecution6StartEnd(ATMSystem CheckCashSSDExecution6)
+		ExecutionEnd::CheckCashSSDExecution6FinishEnd(ATMSystem CheckCashSSDExecution6)
+		MessageEnd::CheckCashSSDCallMessage11ReturnReceivingEnd(BankClerk CheckCashSSDCallMessage11Return)
+
+	}
+
+	Interaction CheckLogSSD {
+
+		[Participants: BankClerk ATMSystem]
+
+		CallMessage::CheckLogSSDCallMessage1(changeMode CheckLogSSDCallMessage1SendingEnd -> CheckLogSSDExecution1StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage1Return(CheckLogSSDExecution1FinishEnd -> CheckLogSSDCallMessage1ReturnReceivingEnd CheckLogSSDCallMessage1)
+		CallMessage::CheckLogSSDCallMessage3(clerkAuthorization CheckLogSSDCallMessage3SendingEnd -> CheckLogSSDExecution2StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage3Return(CheckLogSSDExecution2FinishEnd -> CheckLogSSDCallMessage3ReturnReceivingEnd CheckLogSSDCallMessage3)
+		CallMessage::CheckLogSSDCallMessage5(checkLog CheckLogSSDCallMessage5SendingEnd -> CheckLogSSDExecution3StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage5Return(CheckLogSSDExecution3FinishEnd -> CheckLogSSDCallMessage5ReturnReceivingEnd CheckLogSSDCallMessage5)
+		CallMessage::CheckLogSSDCallMessage7(printLog CheckLogSSDCallMessage7SendingEnd -> CheckLogSSDExecution4StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage7Return(CheckLogSSDExecution4FinishEnd -> CheckLogSSDCallMessage7ReturnReceivingEnd CheckLogSSDCallMessage7)
+		CallMessage::CheckLogSSDCallMessage9(clerkExit CheckLogSSDCallMessage9SendingEnd -> CheckLogSSDExecution5StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage9Return(CheckLogSSDExecution5FinishEnd -> CheckLogSSDCallMessage9ReturnReceivingEnd CheckLogSSDCallMessage9)
+		CallMessage::CheckLogSSDCallMessage11(changeMode CheckLogSSDCallMessage11SendingEnd -> CheckLogSSDExecution6StartEnd)
+		ReturnMessage::CheckLogSSDCallMessage11Return(CheckLogSSDExecution6FinishEnd -> CheckLogSSDCallMessage11ReturnReceivingEnd CheckLogSSDCallMessage11)
+
+		Execution::CheckLogSSDExecution1(ATMSystem CheckLogSSDExecution1StartEnd CheckLogSSDExecution1FinishEnd)
+		Execution::CheckLogSSDExecution2(ATMSystem CheckLogSSDExecution2StartEnd CheckLogSSDExecution2FinishEnd)
+		Execution::CheckLogSSDExecution3(ATMSystem CheckLogSSDExecution3StartEnd CheckLogSSDExecution3FinishEnd)
+		Execution::CheckLogSSDExecution4(ATMSystem CheckLogSSDExecution4StartEnd CheckLogSSDExecution4FinishEnd)
+		Execution::CheckLogSSDExecution5(ATMSystem CheckLogSSDExecution5StartEnd CheckLogSSDExecution5FinishEnd)
+		Execution::CheckLogSSDExecution6(ATMSystem CheckLogSSDExecution6StartEnd CheckLogSSDExecution6FinishEnd)
+
+		MessageEnd::CheckLogSSDCallMessage1SendingEnd(BankClerk CheckLogSSDCallMessage1)
+		ExecutionEnd::CheckLogSSDExecution1StartEnd(ATMSystem CheckLogSSDExecution1)
+		ExecutionEnd::CheckLogSSDExecution1FinishEnd(ATMSystem CheckLogSSDExecution1)
+		MessageEnd::CheckLogSSDCallMessage1ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage1Return)
+		MessageEnd::CheckLogSSDCallMessage3SendingEnd(BankClerk CheckLogSSDCallMessage3)
+		ExecutionEnd::CheckLogSSDExecution2StartEnd(ATMSystem CheckLogSSDExecution2)
+		ExecutionEnd::CheckLogSSDExecution2FinishEnd(ATMSystem CheckLogSSDExecution2)
+		MessageEnd::CheckLogSSDCallMessage3ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage3Return)
+		MessageEnd::CheckLogSSDCallMessage5SendingEnd(BankClerk CheckLogSSDCallMessage5)
+		ExecutionEnd::CheckLogSSDExecution3StartEnd(ATMSystem CheckLogSSDExecution3)
+		ExecutionEnd::CheckLogSSDExecution3FinishEnd(ATMSystem CheckLogSSDExecution3)
+		MessageEnd::CheckLogSSDCallMessage5ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage5Return)
+		MessageEnd::CheckLogSSDCallMessage7SendingEnd(BankClerk CheckLogSSDCallMessage7)
+		ExecutionEnd::CheckLogSSDExecution4StartEnd(ATMSystem CheckLogSSDExecution4)
+		ExecutionEnd::CheckLogSSDExecution4FinishEnd(ATMSystem CheckLogSSDExecution4)
+		MessageEnd::CheckLogSSDCallMessage7ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage7Return)
+		MessageEnd::CheckLogSSDCallMessage9SendingEnd(BankClerk CheckLogSSDCallMessage9)
+		ExecutionEnd::CheckLogSSDExecution5StartEnd(ATMSystem CheckLogSSDExecution5)
+		ExecutionEnd::CheckLogSSDExecution5FinishEnd(ATMSystem CheckLogSSDExecution5)
+		MessageEnd::CheckLogSSDCallMessage9ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage9Return)
+		MessageEnd::CheckLogSSDCallMessage11SendingEnd(BankClerk CheckLogSSDCallMessage11)
+		ExecutionEnd::CheckLogSSDExecution6StartEnd(ATMSystem CheckLogSSDExecution6)
+		ExecutionEnd::CheckLogSSDExecution6FinishEnd(ATMSystem CheckLogSSDExecution6)
+		MessageEnd::CheckLogSSDCallMessage11ReturnReceivingEnd(BankClerk CheckLogSSDCallMessage11Return)
+
+	}
+
+	Service ATMSystem {
+
+		[Operation]
+		inputPassword(password)
+		withdrawCash(quantity)
+		printReceipt()
+		ejectCard()
+		inputCard(cardID)
+		depositFunds(quantity)
+		changePassword()
+		checkBalance()
+		cardIdentification()
+		transferMoney(cardID, quantity)
+		checkBankStatement()
+		closeAccount()
+		clerkAuthorization(clerkID, authorizationCode)
+		checkLog(fromTime, toTime)
+		printLog()
+		checkCash()
+		printDetails()
+		clerkExit()
+		changeMode(pin)
+		checkUser(userID)
+		checkCard(cardID)
+
+	}
+
+	Service ThirdPartyServices {
+
+	}
+
+	Service ManageBankCardCRUDService {
+
+		[Operation]
+		createBankCard(cardid, password, balance, cardstatus, catalog)
+		queryBankCard(cardID)
+		modifyBankCard(cardid, password, balance, cardstatus, catalog)
+		deleteBankCard(cardID)
+
+	}
+
+	Service ManageUserCRUDService {
+
+		[Operation]
+		createUser(userid, name, address)
+		queryUser(userID)
+		modifyUser(userid, name, address)
+		deleteUser(userID)
+
+	}
+
+	Service ManageTransactionCRUDService {
+
+		[Operation]
+		createTransaction(withdrewnum, balanceafterwithdraw)
+		queryTransaction(withdrewNum)
+		modifyTransaction(withdrewnum, balanceafterwithdraw)
+		deleteTransaction(withdrewNum)
+
+	}
+
+//	Service CheckBalanceService {
+//
+//	}
+//
+//	Service TransferMoneyService {
+//
+//	}
+//
+//	Service CheckBankStatementService {
+//
+//	}
+//
+//	Service CloseAccountService {
+//
+//	}
+//
+//	Service ManageUserService {
+//
+//	}
+//
+//	Service ManageBankCardService {
+//
+//	}
+//
+//	Service CheckCashService {
+//
+//	}
+//
+//	Service CheckLogService {
+//
+//	}
+//	Service ChangePasswordService {
+//
+//	}
+	Contract ATMSystem::ejectCard() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::printReceipt() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::withdrawCash(quantity : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::inputPassword(password : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::inputCard(cardID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // Service WithdrawCashService {
+
+	Contract ATMSystem::depositFunds(quantity : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} //
+
+	Contract ATMSystem::changePassword() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // [Operation]
+
+	Contract ATMSystem::checkBalance() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // inputCard(cardID)
+
+	Contract ATMSystem::cardIdentification() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // inputPassword(password)
+
+	Contract ManageTransactionCRUDService::createTransaction(withdrewnum : String, balanceafterwithdraw : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // withdraw(quantity)
+
+	Contract ManageTransactionCRUDService::queryTransaction(withdrewNum : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // printReceipt()
+
+	Contract ManageTransactionCRUDService::modifyTransaction(withdrewnum : String, balanceafterwithdraw : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // ejectCard()
+
+	Contract ManageTransactionCRUDService::deleteTransaction(withdrewNum : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} //
+
+	Contract ManageUserCRUDService::createUser(userid : String, name : String, address : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // }
+
+	Contract ManageUserCRUDService::queryUser(userID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} //
+
+	Contract ManageUserCRUDService::modifyUser(userid : String, name : String, address : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // Service DepositFundsService {
+
+	Contract ManageUserCRUDService::deleteUser(userID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} //
+
+	Contract ManageBankCardCRUDService::createBankCard(cardid : String, password : String, balance : String, cardstatus : String, catalog : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // [Operation]
+
+	Contract ManageBankCardCRUDService::queryBankCard(cardID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	} // }
+
+	Contract ManageBankCardCRUDService::modifyBankCard(cardid : String, password : String, balance : String, cardstatus : String, catalog : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ManageBankCardCRUDService::deleteBankCard(cardID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::transferMoney(cardID : String, quantity : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::checkBankStatement() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::closeAccount() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::clerkAuthorization(clerkID : String, authorizationCode : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::checkLog(fromTime : String, toTime : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::printLog() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::checkCash() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::printDetails() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::clerkExit() : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::changeMode(pin : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::checkUser(userID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+	Contract ATMSystem::checkCard(cardID : String) : Boolean {
+
+		precondition:
+			true
+		postcondition:
+			true
+	}
+
+}
+
+DomainModel ATM {
+
+	@AutoCRUD Entity BankCard {
+		CardID : Integer
+		Password : Integer
+		Balance : Real
+		CardStatus : CardStatus[NORMAL|SUSPEND|CANCEL]
+		Catalog : CardCatalog[CREDIT|DEBIT]
+
+		[Refer]
+		BelongedUser : User Association
+		Has : Transaction* Association
+		BelongedToBank : Bank ! Association
+	}
+
+	@AutoCRUD Entity User {
+		UserID : Integer
+		Name : String
+		Address : String
+
+		[Refer]
+		OwnedCard : BankCard* ! Aggregation
+	}
+
+	@AutoCRUD Entity Transaction {
+		WithdrewNum : Integer
+		BalanceAfterWithdraw : Real
+
+		[Refer]
+		InvolvedCaed : BankCard ! Aggregation
+	}
+
+	@AutoCRUD Entity BankClerk {
+		ClerkID : Integer
+		Name : String
+		Post : PostName[ASSISTANT|MANAGER|PRESIDENT]
+
+		[Refer]
+		ManageUser : User* Association
+		ManageBankCard : BankCard* Association
+	}
+
+	Entity Receipt {
+		Time : Date
+		OperationCount : Real
+		Operation : OperatopnName[CHECK|DEPOSIT|WITHDRAW|TRANSFER]
+		BeforeAmount : Real
+		AfterAmount : Real
+		CardID : Integer
+		UserID : Integer
+
+		[Refer]
+		ReceiptFromATM : ATM Aggregation
+	}
+
+	Entity ATM {
+		ATMid : Integer
+		Address : String
+
+		[Refer]
+		BelongedtoBank : Bank Association
+		ATMproduceReceipt : Receipt ! Association
+	}
+
+	Entity Bank {
+		BankName : String
+		Address : String
+		StuffNum : Integer
+
+		[Refer]
+		OwnedATM : ATM* ! Aggregation
+		OwnedBankCard : BankCard* Association
+	}
+
+}
+
