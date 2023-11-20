@@ -1,3 +1,15 @@
+update hw3:
+![image](https://github.com/Winmer6/RM2PT1/assets/72688996/8dfceafa-50f0-431c-8ac5-9713f6d3330d)
+
+![image](https://github.com/Winmer6/RM2PT1/assets/72688996/59a5b9a4-a872-4d3c-95de-c6a2b618b5e2)
+
+![image](https://github.com/Winmer6/RM2PT1/assets/72688996/552b6a29-5e6a-4337-9991-ed4d3c484cd3)
+
+![image](https://github.com/Winmer6/RM2PT1/assets/72688996/47552869-5a17-43e4-b368-29f991affb4f)
+
+![Uploading image.png…]()
+
+
 # RM2PT1
 自然语言需求部分：
 
