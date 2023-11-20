@@ -1,0 +1,150 @@
+MicroServiceModel ATM {
+	MicroService CustomerService {
+		ProvidedInterface transferMoney{
+			[Operation]
+			transferMoney
+		}
+		ProvidedInterface closeAccount{
+			[Operation]
+			closeAccount
+		}
+		ProvidedInterface depositFunds{
+			[Operation]
+			depositFunds
+		}
+		ProvidedInterface checkBankStatement{
+			[Operation]
+			checkBankStatement
+		}
+		ProvidedInterface withdrawCash{
+			[Operation]
+			withdrawCash
+		}
+		ProvidedInterface cardIdentification{
+			[Operation]
+			cardIdentification
+		}
+		ProvidedInterface checkBalance{
+			[Operation]
+			checkBalance
+		}
+		ProvidedInterface changePassword{
+			[Operation]
+			changePassword
+		}
+		ProvidedInterface manageBankCard{
+			[Operation]
+			createBankCard
+			queryBankCard
+			updateBankCard
+			modifyBankCard
+		}
+		ProvidedInterface manageBank{
+			[Operation]
+			createBank
+			queryBank
+			updateBank
+			modifyBank
+		}
+		RequiredInterface manageATM
+		RequiredInterface manageTransaction
+		DomainModel CustomerService {
+			@AutoCRUD Entity User {
+				UserID : Integer
+				Name : String
+				Address : String
+				[Refer]
+				OwnedCard : BankCard  Aggregation
+			}
+			 Entity Bank {
+				BankName : String
+				Address : String
+				StuffNum : Integer
+				[Refer]
+				OwnedBankCard : BankCard  Association
+			}
+			@AutoCRUD Entity BankClerk {
+				ClerkID : Integer
+				Name : String
+				Post : Integer
+				[Refer]
+				ManageUser : User  Association
+				ManageBankCard : BankCard  Association
+			}
+			@AutoCRUD Entity BankCard {
+				CardID : Integer
+				Password : Integer
+				Balance : Real
+				CardStatus : Integer
+				Catalog : Integer
+				[Refer]
+				BelongedUser : User  Association
+				BelongedToBank : Bank  Association
+			}
+		}
+	}
+	MicroService BankClerkService {
+		ProvidedInterface manageBankCard{
+			[Operation]
+			createBankCard
+			queryBankCard
+			updateBankCard
+			modifyBankCard
+		}
+		ProvidedInterface checkCash{
+			[Operation]
+			checkCash
+		}
+		ProvidedInterface checkLog{
+			[Operation]
+			checkLog
+		}
+		ProvidedInterface manageUser{
+			[Operation]
+			createUser
+			queryUser
+			updateUser
+			modifyUser
+		}
+		ProvidedInterface manageATM{
+			[Operation]
+			createATM
+			queryATM
+			updateATM
+			modifyATM
+		}
+		ProvidedInterface manageTransaction{
+			[Operation]
+			createTransaction
+			queryTransaction
+			updateTransaction
+			modifyTransaction
+		}
+		RequiredInterface manageBankCard
+		RequiredInterface manageBank
+		DomainModel BankClerkService {
+			 Entity Receipt {
+				Time : Date
+				OperationCount : Real
+				Operation : Integer
+				BeforeAmount : Real
+				AfterAmount : Real
+				CardID : Integer
+				UserID : Integer
+				[Refer]
+				ReceiptFromATM : ATM  Aggregation
+			}
+			@AutoCRUD Entity Transaction {
+				WithdrewNum : Integer
+				BalanceAfterWithdraw : Real
+				[Refer]
+			}
+			 Entity ATM {
+				ATMid : Integer
+				Address : String
+				[Refer]
+				ATMproduceReceipt : Receipt  Association
+			}
+		}
+	}
+}
